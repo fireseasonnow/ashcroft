@@ -9,7 +9,6 @@ export default defineConfig({
       '/api': {
            target: 'https://query2.finance.yahoo.com',
            changeOrigin: true,
-           secure: false,
            rewrite: (path) => path.replace(/^\/api/, ""),  
        }
     }
