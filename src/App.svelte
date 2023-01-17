@@ -1,7 +1,16 @@
 <script lang="ts">
   import { onMount } from "svelte";
 
-  let summaryDetail;
+  interface summaryDetailItems {
+    fmt: string;
+    raw: number;
+  }
+
+  interface summaryDetail {
+    [key: string]: summaryDetailItems;
+  }
+
+  let summaryDetail: summaryDetail;
 
   $: ({ previousClose, dividendRate, dividendYield } = summaryDetail || {});
 
@@ -18,7 +27,7 @@
     }
   });
 
-  const formatValueToPrice = (value, factor) => {
+  const formatValueToPrice = (value: { raw: number }, factor: number) => {
     const sum = value.raw * factor;
 
     return sum.toLocaleString("en-US", {
